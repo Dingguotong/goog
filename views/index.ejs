@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" href="/stylesheets/css/swiper-3.4.2.min.css">
+    <link rel='stylesheet' href='/stylesheets/css/shenme.css' />
+  </head>
+  <body>
+
+  <!--头-->
+  
+  <div class="dgt-head">
+    <img src="/images/qqqzzz_01.jpg" alt="">
+  </div>
+  
+  <!--轮播-->
+  
+  <div class="swiper-container" id="dgt-LunB">
+    <div class="swiper-wrapper">
+      <!--<div class="swiper-slide"><img src="/images/3.jpg" alt=""></div>-->
+      <!--<div class="swiper-slide"><img src="/images/4.jpg" alt=""></div>-->
+      <!--<div class="swiper-slide"><img src="/images/5.jpg" alt=""></div>-->
+      <!--<div class="swiper-slide"><img src="/images/7.jpg" alt=""></div>-->
+      <!--<div class="swiper-slide"><img src="/images/11.jpg" alt=""></div>-->
+      <!--<div class="swiper-slide"><img src="/images/10.jpeg" alt=""></div>-->
+      <!--<div class="swiper-slide"><img src="/images/16.jpg" alt=""></div>-->
+    </div>
+  </div>
+  
+  
+  
+  <!--导航-->
+  
+  <div class="dgt-nav">
+    <img src="/images/qqqzzz_03.jpg" alt="">
+  </div>
+  
+  <!--广告-->
+  
+  <div class="dgt-guang">
+    <p>时间成长营</p>
+    <ul>
+      <!--<li>-->
+        <!--<img src="/images/8.jpg" alt="">-->
+        <!--<div class="center">-->
+          <!--<span>从零开始写隶书-&#45;&#45;隶书技法成长营（第三期）</span>-->
+          <!--<p>主讲人  豆瓣时间</p>-->
+          <!--<span>火爆招生</span>-->
+        <!--</div>-->
+
+        <!--<p class="right">-->
+          <!--<img src="/images/wweeqq_06.jpg" alt="">-->
+        <!--</p>-->
+      <!--</li>-->
+
+      <!--<li>-->
+        <!--<img src="/images/8.jpg" alt="">-->
+        <!--<div class="center">-->
+          <!--<span>从零开始写隶书-&#45;&#45;隶书技法成长营（第三期）</span>-->
+          <!--<p>主讲人  豆瓣时间</p>-->
+          <!--<span>火爆招生</span>-->
+        <!--</div>-->
+
+        <!--<p class="right">-->
+          <!--<img src="/images/wweeqq_06.jpg" alt="">-->
+        <!--</p>-->
+      <!--</li>-->
+    </ul>
+  </div>
+  
+  
+  
+  <!--尾部-->
+  
+  <div class="dgt-foot">
+    <img src="/images/qqqzzz_05.jpg" alt="">
+  </div>
+  
+  </body>
+</html>
+<script src="/javascripts/rem.js"></script>
+<script src="/javascripts/swiper-3.4.2.min.js"></script>
+<script src="/javascripts/jquery-3.4.1.js"></script>
+<script>
+  $.ajax({
+    type:'get',
+    url:'/swiper',
+    dataType:'json',
+    async:true,
+    success:function(ret){
+      var swi=ret.swiper;
+      var str="";
+      for(var i in swi){
+        str+=`<div class="swiper-slide"><img src="${swi[i].imgurl}" alt=""></div>`
+      }
+      $('#dgt-LunB .swiper-wrapper').html(str);
+
+      var swiper=new Swiper("#dgt-LunB",{
+        autoplay:1500,
+        loop:true
+      })
+    }
+  })
+
+  $.ajax({
+    type:'get',
+    url:'/api',
+    async:true,
+    dataType:'json',
+    success:function(req){
+      var api=req.api;
+      var str="";
+      for(var i in api){
+        str+=` <li>
+        <img src="${api[i].imgurl1}" alt="">
+        <div class="center">
+          <span>${api[i].tt1}</span>
+          <p>${api[i].tt2}</p>
+          <span>${api[i].tt3}</span>
+        </div>
+
+        <p class="right">
+          <img src="${api[i].imgurl2}" alt="">
+        </p>
+      </li>`
+      }
+      $(".dgt-guang ul").html(str);
+    }
+  })
+</script>
